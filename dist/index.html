@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="theme-color" content="#07100f" />
+  <meta name="description" content="ARES is an auditable Evidence Autopilot for astronaut health during delayed-Earth missions." />
+  <title>ARES · Evidence Autopilot</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307100f'/%3E%3Cpath d='M15 45 30 15h4l15 30h-8l-3-7H26l-3 7h-8Zm14-14h6l-3-8-3 8Z' fill='%23d8ff62'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css?v=ares-v02-20261018" />
+  <link rel="stylesheet" href="lab.css?v=ares-eval-1" />
+  <link rel="stylesheet" href="daily.css?v=ares-v05-20261029" />
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand" aria-label="ARES Evidence Autopilot">
+        <span class="brand-mark">A</span>
+        <span><b>ARES</b><small>EVIDENCE AUTOPILOT</small></span>
+      </div>
+      <div class="mission-strip">
+        <span><i class="live-dot"></i> MARS TRANSIT</span>
+        <span>DAY 184</span>
+        <span>EARTH RTT&nbsp; 41:12</span>
+        <span class="simulation-mode">SIMULATION · SYNTHETIC REPLAY</span>
+      </div>
+      <div class="header-actions">
+        <button class="daily-nav active" id="dailyNav" aria-current="page">TODAY</button>
+        <button class="lab-launch" id="labLaunch"><span>◇</span> SCENARIO LAB</button>
+        <button class="reset-button" id="resetButton" aria-label="Reset mission replay"><span>↺</span> RESET REPLAY</button>
+        <button class="icon-button" id="infoButton" aria-label="Open mission model notes">i</button>
+      </div>
+    </header>
+
+    <main class="daily-view" id="dailyView">
+      <section class="daily-hero">
+        <div class="daily-hero-copy">
+          <span class="eyebrow">CREW HEALTH · MORGAN · MARS TRANSIT DAY 184</span>
+          <h1>Know what changed.<br><em>Know what to check next.</em></h1>
+          <p>ARES brings daily health signals and crew reports into one clear review. Your check-in now enters the shared observation-selection policy; operational decisions remain locked without measured evidence and authority.</p>
+          <div class="daily-hero-actions">
+            <button class="daily-primary" id="dailyCheckinJump">START TODAY’S CHECK-IN <span>↓</span></button>
+            <button class="daily-secondary" id="dailyOpenEvent">EXPLORE SYNTHETIC INCIDENT <span>→</span></button>
+          </div>
+          <small>Decision-support prototype · All mission telemetry shown here is synthetic</small>
+        </div>
+        <div class="daily-orbit" aria-hidden="true"><span class="orbit-one"></span><span class="orbit-two"></span><span class="orbit-core">A</span><span class="orbit-label orbit-label-top">OBSERVE</span><span class="orbit-label orbit-label-right">MEASURE</span><span class="orbit-label orbit-label-bottom">ACT WITH AUTHORITY</span></div>
+      </section>
+
+      <div class="urgent-stop" id="urgentStop" role="alert" hidden><strong>URGENT REPORT · STANDARD DEMO PATH PAUSED</strong><p>Follow the mission emergency protocol and contact the designated medical authority. A synthetic evidence replay must not delay that response. Clear this tab’s report to explore the separate demo.</p></div>
+      <section class="daily-summary" aria-label="Today’s synthetic health overview">
+        <div class="daily-section-title"><span class="eyebrow">01 · TODAY’S REVIEW</span><h2>Three signals deserve a closer look.</h2><p>Changes from Morgan’s personal reference are prompts for review, not diagnoses.</p></div>
+        <div class="daily-metrics">
+          <article><span>SLEEP DURATION</span><strong id="dailySleepValue">5 h 18 m</strong><small id="dailySleepDelta">−22% vs 21-day reference</small><i class="daily-meter sleep-meter"></i></article>
+          <article><span>HRV-DERIVED FEATURE</span><strong>−2.1 <sup>MAD</sup></strong><small>Personal deviation · wearable signal</small><i class="daily-meter hrv-meter"></i></article>
+          <article><span>CABIN CO₂</span><strong>3.4 <sup>mmHg</sup></strong><small>Above this scenario’s baseline</small><i class="daily-meter co2-meter"></i></article>
+        </div>
+        <div class="daily-interpretation"><span class="daily-signal-icon">?</span><p id="dailyInterpretationCopy"><b>What this means</b><br>A change is present, but these signals alone do not establish its cause. ARES recommends a short vigilance observation in the synthetic incident to distinguish competing explanations.</p><button id="dailyExploreEvidence">SEE WHY THIS TEST →</button></div>
+      </section>
+
+      <section class="daily-routine" aria-labelledby="routineTitle">
+        <div class="daily-routine-head"><div><span class="eyebrow">ROUTINE · SIMULATED MISSION DAY</span><h2 id="routineTitle">A short check before the day gets busy.</h2><p>This is an on-screen reminder, not a timed alert or an automated medical clearance.</p></div><span class="routine-status" id="routineStatus" aria-live="polite">CREW CHECK-IN DUE</span></div>
+        <div class="routine-steps">
+          <div><span class="routine-number">01</span><b>Report</b><p>Enter last night’s sleep, mood and any new symptom. Record what you actually observed.</p></div>
+          <div><span class="routine-number">02</span><b>Compare</b><p>Review changes from your own reference and the seven-day trend; one value is not a diagnosis.</p></div>
+          <div><span class="routine-number">03</span><b>Decide what to check</b><p>Before a demanding task, review ARES’s suggested observation with the crew.</p></div>
+        </div>
+        <button id="routineCheckinJump">GO TO CREW CHECK-IN <span>↓</span></button>
+      </section>
+
+      <section class="daily-body">
+        <article class="daily-panel daily-trend">
+          <div class="daily-panel-head"><span class="eyebrow">02 · PERSONAL TREND</span><h2>Sleep over the last seven days</h2><p id="dailyTrendCopy">Scenario values in hours. The dashed line is Morgan’s synthetic personal reference, not a clinical threshold.</p></div>
+          <div class="daily-chart" id="dailyChart" role="img" aria-label="Seven days of synthetic sleep duration compared with a personal reference"></div>
+          <div class="daily-trend-foot"><span><i></i> SLEEP DURATION</span><span><i></i> PERSONAL REFERENCE · 6 H 48 M</span></div>
+        </article>
+
+        <article class="daily-panel daily-checkin" id="dailyCheckin">
+          <div class="daily-panel-head"><span class="eyebrow">03 · CREW SELF-CHECK</span><h2>How are you today?</h2><p>Your report feeds ARES’s observation-selection policy. It stays in this tab session for reload recovery; the separate mission replay retains its fixed synthetic telemetry.</p></div>
+          <form id="dailyCheckinForm">
+            <label for="checkinSleep">Sleep last night <span>hours</span></label>
+            <p class="field-help">Use the time you actually slept, not time spent in bed. An estimate is acceptable; note uncertainty to the crew.</p>
+            <input id="checkinSleep" name="sleep" type="number" min="0" max="24" step="0.05" value="5.3" required inputmode="decimal" />
+            <label for="checkinMood">Mood and readiness</label>
+            <p class="field-help">Choose how you feel now compared with your usual day. This is a self-report, not a mental-health diagnosis.</p>
+            <select id="checkinMood" name="mood"><option value="steady">Steady</option><option value="strained">Strained or less focused</option><option value="low">Low mood or unusually stressed</option></select>
+            <label for="checkinSymptom">Symptoms or immediate concern</label>
+            <p class="field-help">Report new or worsening symptoms even if the sensor readings look normal.</p>
+            <select id="checkinSymptom" name="symptom"><option value="none">No new symptoms to report</option><option value="headache">Headache or discomfort</option><option value="urgent">Severe or rapidly worsening symptoms</option></select>
+            <button type="submit">RECORD CREW CHECK-IN <span>→</span></button>
+          </form>
+          <details class="measurement-guide"><summary>What do these readings mean?</summary><p><b>Sleep</b> and <b>HRV-derived features</b> are compared with Morgan’s own synthetic reference because personal changes may matter more than a generic number. <b>Cabin CO₂</b> is an environmental clue, not a measure of blood oxygen or proof of a medical cause. Wearable and cabin sensors can fail or drift; confirm unexpected readings and follow the mission protocol. No value here clears someone for duty.</p></details>
+          <div class="daily-checkin-result" id="dailyCheckinResult" aria-live="polite" hidden></div>
+          <div class="crew-policy-trace" id="crewPolicyTrace" aria-live="polite" hidden><span>CREW INPUT → SHARED EVIDENCE POLICY</span><strong id="crewPolicyNext"></strong><p id="crewPolicyWhy"></p><small>🔒 ACTION GATE LOCKED · No operational action follows from a self-report alone.</small></div>
+          <button class="clear-checkin" id="clearCheckin" type="button" hidden>FORGET THIS TAB’S CHECK-IN</button>
+        </article>
+      </section>
+
+      <section class="daily-next" id="dailyNext" aria-label="Next step">
+        <div><span class="eyebrow">04 · NEXT JUSTIFIED STEP</span><h2 id="dailyNextTitle">Measure what helps resolve the uncertainty.</h2><p id="dailyNextCopy">In this demonstration, a three-minute vigilance replay tests whether performance has shifted relative to Morgan’s own baseline. ARES then updates its explanation and checks the action policy.</p><ol id="dailyNextSteps"><li>Review the signals and crew report.</li><li>Open the synthetic incident and approve the recommended observation.</li><li>Select an observed or counterfactual result to see the decision change.</li></ol></div>
+        <button id="dailyNextEvent">OPEN EVIDENCE MAP <span>→</span><small>Mission replay · MRG-184-07</small></button>
+      </section>
+      <p class="daily-footnote">ARES does not diagnose or prescribe treatment. Severe or rapidly worsening symptoms require the mission’s emergency protocol and a qualified crew medical authority. Operational actions in this prototype are simulated.</p>
+    </main>
+
+    <main id="missionView" hidden>
+      <div class="replay-back-row"><button id="missionBack">← TODAY’S HEALTH REVIEW</button><span>SYNTHETIC INCIDENT · MRG-184-07</span></div>
+      <section class="status-rail" aria-label="Current event summary">
+        <div class="event-title">
+          <span class="eyebrow">CREW HEALTH EVENT · MRG-184-07</span>
+          <h1>Something changed.<br><em>Cause unresolved.</em></h1>
+        </div>
+        <div class="metric"><span>Sleep</span><strong>5h 18m</strong><small>−22% vs 21-day baseline</small></div>
+        <div class="metric"><span>HRV feature</span><strong>−2.1 <sup>MAD</sup></strong><small>personal deviation</small></div>
+        <div class="metric"><span>Cabin CO₂</span><strong>3.4 <sup>mmHg</sup></strong><small>above scenario baseline</small></div>
+        <div class="operational-checks">
+          <div class="safety"><span class="shield">✓</span><span><b>IMMEDIATE HAZARD CHECK</b><small>NO RED FLAGS DETECTED</small></span></div>
+          <div class="sensor-integrity" id="sensorIntegrity"><span class="sensor-mark">◎</span><span><b>SENSOR INTEGRITY</b><small id="sensorIntegrityState">NO FAULT INDICATORS · CROSS-CHECK AVAILABLE</small></span></div>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="map-panel panel">
+          <div class="panel-head">
+            <div><span class="eyebrow">01 · CURRENT MODEL</span><h2>Evidence map</h2></div>
+            <div class="legend"><span><i class="support"></i> Supports</span><span><i class="conflict"></i> Conflicts</span><span><i class="missing"></i> Missing</span></div>
+          </div>
+
+          <div class="map-stage" id="mapStage">
+            <svg class="links" viewBox="0 0 900 430" preserveAspectRatio="none" aria-hidden="true">
+              <path class="line support-line l1" d="M126 94 C260 92 260 99 394 99" />
+              <path class="line support-line l2" d="M126 214 C260 200 260 200 394 200" />
+              <path class="line support-line l3" d="M126 332 C260 320 260 300 394 300" />
+              <path class="line missing-line l4" d="M506 99 C640 99 640 94 774 94" />
+              <path class="line missing-line l5" d="M506 200 C640 200 640 214 774 214" />
+              <path class="line conflict-line l6" d="M126 214 C280 245 260 300 394 300" />
+            </svg>
+
+            <div class="node-column observations">
+              <span class="column-label">OBSERVATIONS</span>
+              <button class="evidence-node" data-detail="sleep"><span>Sleep duration ↓</span><small>Observed · synthetic replay</small></button>
+              <button class="evidence-node" data-detail="co2"><span>Cabin CO₂ ↑</span><small>Observed · synthetic replay</small></button>
+              <button class="evidence-node" data-detail="hrv"><span>HRV feature ↓</span><small>Personal baseline output</small></button>
+            </div>
+
+            <div class="node-column hypotheses">
+              <span class="column-label">COMPETING EXPLANATIONS</span>
+              <button class="hypothesis active" data-detail="sleep-h"><span class="h-code">H1</span><span><b>Accumulated sleep restriction</b><small>Support index <i class="meter"><u id="h1Meter" style="--w:78%"></u></i><strong id="h1Value">78</strong></small></span></button>
+              <button class="hypothesis" data-detail="environment"><span class="h-code">H2</span><span><b>Environmental contribution</b><small>Support index <i class="meter"><u id="h2Meter" style="--w:52%"></u></i><strong id="h2Value">52</strong></small></span></button>
+              <button class="hypothesis" data-detail="recovery"><span class="h-code">H3</span><span><b>Workload / recovery mismatch</b><small>Support index <i class="meter"><u id="h3Meter" style="--w:31%"></u></i><strong id="h3Value">31</strong></small></span></button>
+              <button class="hypothesis unknown" data-detail="unknown"><span class="h-code">U<sub>M</sub></span><span><b>Known-model residual</b><small>Unexplained index <i class="meter"><u id="unknownMeter" style="--w:36%"></u></i><strong id="unknownLevel">36</strong></small></span></button>
+            </div>
+
+            <div class="node-column gaps">
+              <span class="column-label" id="evidenceColumnLabel">MISSING EVIDENCE</span>
+              <button class="evidence-node accent" id="pvtEvidenceNode" data-test="pvt"><span>Vigilance result</span><small>Available · 3 min</small></button>
+              <button class="evidence-node" data-test="symptom"><span>Symptom check</span><small>Available · 30 sec</small></button>
+              <button class="evidence-node" data-test="recovery"><span>Recovery response</span><small>Observe · 20 min</small></button>
+            </div>
+          </div>
+
+          <div class="uncertainty-vector" aria-label="Uncertainty vector">
+            <span id="uModel"><b>U_MODEL</b><strong>PRESENT</strong><small>Known explanations incomplete</small></span>
+            <span id="uMeasurement"><b>U_MEASUREMENT</b><strong>QUALIFIED</strong><small>No sensor fault indicators</small></span>
+            <span id="uDecision"><b>U_DECISION</b><strong>OPEN</strong><small>More evidence has value</small></span>
+          </div>
+          <div class="model-footer">
+            <span aria-live="polite"><b>KNOWN-MODEL FIT</b><i class="coverage"><u id="coverageBar"></u></i><strong id="coverageText">64</strong><small class="fit-note">synthetic index</small></span>
+            <span class="ledger-count" id="ledgerCount">3 observations · 1 active gap</span>
+            <button id="provenanceButton">Inspect provenance <span>↗</span></button>
+          </div>
+        </div>
+
+        <aside class="autopilot panel">
+          <div class="panel-head"><div><span class="eyebrow">02 · NEXT EVIDENCE</span><h2>What should we learn next?</h2></div><span class="status-pill">AUTOPILOT READY</span></div>
+          <p class="rationale">The leading explanations remain distinguishable. A short vigilance check offers the highest expected information value for its operational cost.</p>
+
+          <div class="options" role="radiogroup" aria-label="Candidate observations">
+            <button class="test-option selected" data-option="pvt" role="radio" aria-checked="true">
+              <span class="radio"></span><span class="test-name"><b>Vigilance check</b><small>Separates sleep-loss pattern from environmental context</small></span><span class="score"><b>HIGH</b><small>3 min · low burden</small></span>
+            </button>
+            <button class="test-option" data-option="symptom" role="radio" aria-checked="false">
+              <span class="radio"></span><span class="test-name"><b>Symptom check</b><small>Captures self-reported discomfort and headache</small></span><span class="score"><b>MED</b><small>30 sec · low burden</small></span>
+            </button>
+            <button class="test-option" data-option="observe" role="radio" aria-checked="false">
+              <span class="radio"></span><span class="test-name"><b>Passive recovery</b><small>Observes whether deviation resolves over time</small></span><span class="score"><b>MED</b><small>20 min · no burden</small></span>
+            </button>
+          </div>
+
+          <div class="why-box"><span>WHY THIS TEST</span><p id="whyText">Its possible outcomes separate the leading explanations more than the alternatives in the current scenario model.</p><small>Expected information value · synthetic demonstration model</small></div>
+
+          <button class="primary-action" id="approveButton"><span>APPROVE OBSERVATION</span><small>Crew authorization required</small><i>→</i></button>
+          <section class="mission-decision" id="missionDecision" hidden aria-live="polite">
+            <div class="decision-kicker">ACTION BRIEF · ILLUSTRATIVE REPLAY GATE</div>
+            <h3 id="missionDecisionTitle">ACT · REVERSIBLE POLICY</h3>
+            <p id="missionDecisionCopy"></p>
+            <div class="reversibility-contract" id="reversibilityContract">
+              <span><b>OPERATIONAL REVERSIBILITY</b><strong id="reversibilityClass">OPTION-PRESERVING</strong></span>
+              <span><b>REVIEW HORIZON</b><strong id="reversibilityTime">45 MIN</strong></span>
+              <span><b>MAX PRE-REVIEW EFFECT</b><strong id="reversibilityEffect">NON-CRITICAL EVA PREP DEFERRED</strong></span>
+            </div>
+            <div class="gate-progress" id="gateProgress"><span class="active">LOCKED</span><i></i><span>VERIFIED</span><i></i><span>AUTHORIZED</span><i></i><span>EXECUTABLE</span></div>
+            <div class="mission-gate" id="missionGate">
+              <div class="gate-title"><span>🔒 DEMO ACTION GATE</span><strong id="gateState">LOCKED</strong></div>
+              <div class="gate-checks" id="gateChecks"></div>
+              <div class="authority-state" id="authorityState"><span>HUMAN AUTHORIZATION</span><b>PENDING</b><small id="authorityRole">Crew Commander required</small></div>
+              <button class="gate-authorize" id="missionAuthorize">AUTHORIZE AS CREW COMMANDER</button>
+              <button class="gate-execute" id="missionExecute" disabled>OPERATIONAL ACTION UNAVAILABLE</button>
+              <button class="gate-tamper" id="missionTamper" disabled>TAMPER WITH EVIDENCE</button>
+            </div>
+            <p class="authority-disclaimer">DEMO ROLE ACKNOWLEDGEMENT ONLY · No crew identity is authenticated by this static prototype.</p>
+            <div class="session-receipt" id="missionSessionReceipt" hidden></div>
+            <div class="earth-handover" id="earthHandover" hidden>
+              <span>EARTH HANDOVER</span><strong id="earthHandoverState">QUEUED · RTT 41:12</strong>
+              <small id="earthHandoverCopy">ONBOARD DECISION PRESERVED · AWAITING EARTH REVIEW</small>
+            </div>
+            <div class="tamper-impact" id="tamperImpact" hidden></div>
+            <blockquote>AI can recommend. Evidence must justify. Humans authorize.</blockquote>
+          </section>
+          <p class="disclaimer">Decision support prototype · Not a diagnosis · No clinical probability estimated</p>
+        </aside>
+      </section>
+
+      <section class="timeline" aria-label="Evidence cycle progress">
+        <span class="done">Observe</span><i></i><span class="done">Doubt</span><i></i><span class="active">Discriminate</span><i></i><span>Measure</span><i></i><span>Update</span><i></i><span>Act or abstain</span>
+      </section>
+    </main>
+
+    <main class="lab-view" id="labView" hidden>
+      <section class="lab-head">
+        <button class="lab-back" id="labBack">← MISSION REPLAY</button>
+        <div><span class="eyebrow">ARES EVIDENCE CHALLENGE</span><h1>Blind Scenario Lab</h1><p>Resolve an unseen event without exhausting the mission’s evidence budget.</p></div>
+        <div class="lab-seed"><span>SCENARIO</span><strong id="labScenarioId">NOT STARTED</strong><small id="labScenarioStatus">Cause hidden</small></div>
+        <button class="benchmark-launch" id="benchmarkLaunch">VIEW REPRODUCIBLE EVALUATION</button>
+        <button class="primary-action compact lab-new" id="labNew"><span>GENERATE SCENARIO</span><i>→</i></button>
+      </section>
+
+      <section class="lab-grid lab-idle" id="labGrid">
+        <article class="lab-card lab-observations">
+          <div class="lab-card-head"><span class="eyebrow">01 · INITIAL STATE</span><h2>Available evidence</h2></div>
+          <div id="labInitial" class="lab-initial"><p class="lab-empty">Generate a blind scenario to begin.</p></div>
+          <div class="budget-block">
+            <span><b>MISSION EVIDENCE BUDGET</b><strong id="budgetValue">6 / 6</strong></span>
+            <div class="budget-track"><i id="budgetBar"></i></div>
+            <small>Shared cost: time · crew burden · resources · operational delay</small>
+            <div class="resource-vector" id="resourceVector">
+              <span><b>TIME</b><strong>25m</strong></span><span><b>ATTN</b><strong>10</strong></span><span><b>ENERGY</b><strong>8</strong></span><span><b>SENSOR</b><strong>3</strong></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="lab-card lab-model">
+          <div class="lab-card-head"><span class="eyebrow">02 · OPEN-WORLD MODEL</span><h2>Uncertainty state</h2></div>
+          <div class="lab-hypotheses" id="labHypotheses">
+            <div data-lab-h="sleep"><span>H1</span><b>Sleep restriction</b><i><u></u></i><strong>—</strong></div>
+            <div data-lab-h="environment"><span>H2</span><b>Environmental contribution</b><i><u></u></i><strong>—</strong></div>
+            <div data-lab-h="recovery"><span>H3</span><b>Recovery mismatch</b><i><u></u></i><strong>—</strong></div>
+            <div class="lab-unknown" data-lab-h="unknown"><span>U<sub>M</sub></span><b>Known-model residual</b><i><u></u></i><strong>—</strong></div>
+          </div>
+          <p class="lab-score-note">Synthetic evidence-support indices · Not clinical probabilities</p>
+          <div class="coverage-warning" id="coverageWarning">Awaiting scenario telemetry.</div>
+          <div class="lab-uncertainty" id="labUncertainty">
+            <span><b>U_MODEL</b><strong>—</strong></span><span><b>U_MEASUREMENT</b><strong>—</strong></span><span><b>U_DECISION</b><strong>—</strong></span>
+          </div>
+          <div class="lab-history"><span class="eyebrow">EVIDENCE LEDGER</span><ol id="labLedger"><li>Waiting for scenario initialization</li></ol></div>
+        </article>
+
+        <aside class="lab-card lab-policy">
+          <div class="lab-card-head"><span class="eyebrow">03 · EVIDENCE POLICY</span><h2>Next justified step</h2></div>
+          <div class="policy-recommendation" id="policyRecommendation"><span>AUTOPILOT</span><p>No active scenario.</p></div>
+          <div class="lab-tests" id="labTests">
+            <button data-lab-test="pvt" disabled><span><b>Vigilance check</b><small>cognitive discrimination</small></span><strong>2</strong></button>
+            <button data-lab-test="report" disabled><span><b>Crew report</b><small>symptoms + context</small></span><strong>1</strong></button>
+            <button data-lab-test="environment" disabled><span><b>Environment sweep</b><small>cabin + sensor cross-check</small></span><strong>1</strong></button>
+            <button data-lab-test="recovery" disabled><span><b>Recovery observation</b><small>20-minute response</small></span><strong>2</strong></button>
+            <button data-lab-test="sensor" disabled><span><b>Sensor validation</b><small>independent hardware check</small></span><strong>2</strong></button>
+          </div>
+          <button class="certificate-button" id="certificateButton" disabled><span>BUILD DECISION ATTESTATION</span><small>Act · reassess · escalate · abstain</small></button>
+          <div class="action-gate" id="actionGate">
+            <span>ACTION GATE</span><strong>LOCKED</strong><small>No verified attestation</small>
+            <button id="gateAction" disabled>OPERATIONAL ACTION UNAVAILABLE</button>
+          </div>
+          <p class="authority-disclaimer">SIMULATED ROLE APPROVAL · This static Site does not authenticate a commander or flight surgeon.</p>
+          <div class="session-receipt" id="labSessionReceipt" hidden></div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <div class="evidence-process" id="evidenceProcess" hidden aria-live="assertive">
+    <span id="processStep">ACQUIRING EVIDENCE</span>
+    <b id="processValue">VIGILANCE TEST RUNNING…</b>
+    <i></i>
+  </div>
+
+  <div class="modal" id="testModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-card test-card">
+      <button class="close" data-close aria-label="Close">×</button>
+      <span class="eyebrow">MISSION REPLAY CONTROLLER · PVT-B</span>
+      <h2 id="modalTitle">3-minute vigilance check</h2>
+      <p>This is a synthetic replay of a short attention test, not a live test. In an operational protocol, the crew would follow an approved procedure, respond to prompts for three minutes, and compare response latency with the same person’s prior baseline.</p>
+      <p class="test-guide"><b>Why this check?</b> It may show whether performance changed before a demanding task. A slower response does not diagnose sleep loss or establish fitness for duty. Here, choose one simulated result to see how ARES updates its evidence and policy.</p>
+      <div class="outcome-grid">
+        <button data-outcome="slowed"><span class="outcome-kicker">OBSERVED REPLAY</span><span class="outcome-icon">+18%</span><b>Slowed response</b><small>Latency above Morgan's personal baseline</small></button>
+        <button data-outcome="normal"><span class="outcome-kicker">COUNTERFACTUAL</span><span class="outcome-icon neutral">±2%</span><b>Expected response</b><small>Within Morgan's personal baseline</small></button>
+      </div>
+      <small class="modal-note">Replay telemetry is synthetic. Both paths use the same evidence engine and update the visible graph.</small>
+    </div>
+  </div>
+
+  <div class="modal" id="resultModal" role="dialog" aria-modal="true" aria-labelledby="resultTitle" hidden>
+    <div class="modal-card result-card">
+      <button class="close" data-close aria-label="Close">×</button>
+      <span class="eyebrow" id="resultEyebrow">ARES · UPDATED STATE</span>
+      <h2 id="resultTitle">Evidence updated</h2>
+      <div class="result-banner" id="resultBanner" aria-live="assertive"></div>
+      <div class="result-body" id="resultBody"></div>
+      <div class="audit-stamp"><span>DECISION TRACE RECORDED</span><small id="auditStamp">MRG-184-07 · evidence revision 02</small></div>
+      <div class="result-actions">
+        <button class="secondary-action" id="alternateButton">Run alternate outcome</button>
+        <button class="primary-action compact" id="completeButton"><span>ACKNOWLEDGE</span><i>→</i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <button class="drawer-backdrop" data-close aria-label="Close detail panel"></button>
+    <aside><button class="close" data-close aria-label="Close">×</button><span class="eyebrow">EVIDENCE RECORD</span><div id="drawerContent"></div></aside>
+  </div>
+
+  <div class="modal" id="certificateModal" role="dialog" aria-modal="true" aria-labelledby="certificateTitle" hidden>
+    <div class="modal-card certificate-card">
+      <button class="close" data-close aria-label="Close">×</button>
+      <span class="eyebrow">SIGNED DECISION ATTESTATION</span>
+      <h2 id="certificateTitle">EPISTEMIC RECORD · ARES-EDA-1</h2>
+      <div id="certificateContent"></div>
+      <div class="verifier-controls">
+        <button class="verify-button" id="verifyAttestation">RUN DETERMINISTIC VERIFIER</button>
+        <button class="secondary-action" id="tamperTest" disabled>Test tamper rejection</button>
+        <button class="authority-button" id="approveTransition" disabled>AUTHORITY LOCKED</button>
+      </div>
+      <div class="certificate-controls">
+        <button class="secondary-action" id="exportAttestation">Export signed JSON</button>
+        <button class="secondary-action" id="revealCause">Reveal hidden cause</button>
+        <button class="primary-action compact" id="newFromCertificate"><span>NEW BLIND SCENARIO</span><i>→</i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="benchmarkModal" role="dialog" aria-modal="true" aria-labelledby="benchmarkTitle" hidden>
+    <div class="modal-card benchmark-card">
+      <button class="close" data-close aria-label="Close">×</button>
+      <span class="eyebrow">ARES-EVAL-1 · 20 AUTHORED SYNTHETIC CASES</span>
+      <h2 id="benchmarkTitle">Reproducible policy comparison</h2>
+      <p>Four policies see the same sealed cases, observations and mission budget. This is a small, hand-authored exploratory test—not external holdout data or clinical validation.</p>
+      <div class="benchmark-claim"><span>PRIMARY QUESTION</span><b>What resources does adaptive acquisition save, and where does it still fail?</b></div>
+      <div class="risk-resource-chart" id="riskResourceChart"></div>
+      <div class="benchmark-results" id="benchmarkResults"></div>
+      <div class="ablation-results" id="ablationResults"></div>
+      <div class="benchmark-inspect"><label for="benchmarkCaseSelect">INSPECT A PAIRED CASE</label><select id="benchmarkCaseSelect"></select><div id="benchmarkCaseTrace"></div></div>
+      <div class="benchmark-sources"><a href="bench/report.json" download>Download report ↗</a><a href="bench/cases.json" download>Case fixtures ↗</a><a href="bench/engine.mjs" download>Evaluator source ↗</a><a href="ares-policy.js" download>Shared policy ↗</a><a href="bench/run.mjs" download>Reproduction command ↗</a></div>
+      <div class="benchmark-foot"><span>20 cases · five per truth class · exact paired traces</span><span>Wrong committed class ≠ measured clinical harm</span></div>
+    </div>
+  </div>
+
+  <script src="demo-session.js?v=ares-v05-20261029"></script>
+  <script src="app.js?v=ares-v05b-20261029"></script>
+  <script src="action-gate.js?v=ares-eval-1"></script>
+  <script src="ares-policy.js?v=ares-v05-20261029"></script>
+  <script src="checkin-policy.js?v=ares-v05-20261029"></script>
+  <script src="bench/ui.js?v=ares-eval-1"></script>
+  <script src="lab.js?v=ares-v05b-20261029"></script>
+  <script src="daily.js?v=ares-v05b-20261029"></script>
+</body>
+</html>
