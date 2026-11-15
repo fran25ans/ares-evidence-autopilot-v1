@@ -2,6 +2,22 @@
 
 ARES is a static, interactive NASA Space Apps prototype for evidence acquisition under uncertainty, limited resources, and delayed expert support.
 
+### Astronaut Health Dashboard
+
+![ARES Health Dashboard](1.png)
+
+### Adaptive Health Check-in
+
+![ARES Health Check-in](2.png)
+
+### Emergency Detection
+
+![ARES Emergency Detection](3.png)
+
+### Evidence-Based Decision Making
+
+![ARES Evidence System](4.png)
+
 ## Fit to the 2026 astronaut health monitoring challenge
 
 The first screen is **Today’s health review**: synthetic sleep, HRV-derived and cabin-environment indicators appear alongside a seven-day personal trend, an on-screen mission-routine reminder, and a crew self-check for sleep, mood/readiness and symptoms. Short instructions explain how to report these measurements, why a vigilance observation is suggested, and what the readings cannot establish. The reminder is not a timed notification. A check-in updates the trend **and passes its visible cues to the same transparent observation selector used by Scenario Lab and ARES-EVAL-1**. It can request an observation, route a new symptom to crew medical review, or stop for the mission emergency protocol. No measured test outcome, diagnosis, or operational clearance is inferred from the self-report. A severe or rapidly worsening symptom pauses the standard demo route and visibly prioritizes escalation.
